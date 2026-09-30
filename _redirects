@@ -1,0 +1,4 @@
+# A telepítési leírás és az adatbázis-séma a mappában van, de nem kell,
+# hogy a weboldalon elérhető legyen.
+/README.md      /404.html  404!
+/supabase/*     /404.html  404!

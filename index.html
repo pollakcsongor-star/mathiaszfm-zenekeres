@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#07060b">
+    <meta name="description" content="Kérd a kedvenc számod az iskolarádióba!">
+    <title>Zenekérés · Pulse Engine</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Chakra+Petch:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/pulse.css">
+</head>
+<body>
+    <div class="aurora-bg" aria-hidden="true">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <div class="req-shell">
+        <header class="req-head">
+            <span class="brand"><img src="assets/logo.png" alt="Pulse Engine"></span>
+        </header>
+
+        <main class="card req-card hero-bg">
+            <div class="eyebrow"><span class="live-dot"></span><span id="station">Iskolarádió</span><span aria-hidden="true">·</span><span>Zenekérés</span></div>
+            <h1 class="req-title">Mi szóljon a <span class="grad-text">szünetben?</span></h1>
+
+            <div id="setup-warning" class="setup-warning hidden" role="alert"></div>
+
+            <section id="form-view">
+                <p class="req-lead">Írd be az előadót és a szám címét. A stúdió minden kérést meghallgat, és ami belefér a suli műsorába, az felkerül a lejátszási listára.</p>
+                <form id="req-form" class="req-form" novalidate>
+                    <div class="row-2">
+                        <label class="field">
+                            <span>Előadó</span>
+                            <input class="input" id="artist" name="artist" maxlength="120" autocomplete="off" autocapitalize="words" placeholder="pl. Dua Lipa" required>
+                        </label>
+                        <label class="field">
+                            <span>Szám címe</span>
+                            <input class="input" id="title" name="title" maxlength="160" autocomplete="off" placeholder="pl. Training Season" required>
+                        </label>
+                    </div>
+                    <label class="field">
+                        <span>Neved / osztályod <em>(nem kötelező)</em></span>
+                        <input class="input" id="requester" name="requester" maxlength="80" autocomplete="off" placeholder="pl. Anna, 9.B">
+                    </label>
+                    <!-- Robotcsapda: ember nem látja, nem tölti ki. -->
+                    <div class="hp" aria-hidden="true">
+                        <label>Weboldal <input type="text" id="website" name="website" tabindex="-1" autocomplete="off"></label>
+                    </div>
+                    <p id="form-error" class="form-error" role="alert"></p>
+                    <button class="btn-primary block" type="submit" id="submit-btn">Kérés elküldése</button>
+                </form>
+            </section>
+
+            <section id="result-view" class="result hidden" aria-live="polite">
+                <div class="result-icon" id="result-icon"></div>
+                <h2 id="result-title"></h2>
+                <div class="song" id="result-song"></div>
+                <p id="result-text"></p>
+                <button class="btn-primary" type="button" id="again-btn">Újabb kérés</button>
+            </section>
+        </main>
+
+        <aside class="card rules" aria-labelledby="rules-title">
+            <div class="eyebrow" id="rules-title">Jó tudni</div>
+            <ul>
+                <li>Iskolabarát számokat kérj: trágár vagy durva szövegű dal nem kerül adásba.</li>
+                <li>Egy számot elég egyszer kérni. Ha többen is kérik, azt látjuk, és előnyt jelent.</li>
+                <li>Amit egyszer már elbíráltunk, arról azonnal kapsz választ.</li>
+            </ul>
+        </aside>
+
+        <footer class="req-foot">Pulse Engine · Zenekérés</footer>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="assets/common.js"></script>
+    <script src="assets/keres.js"></script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#07060b">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Zenekérés · Stúdió</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Chakra+Petch:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/pulse.css">
+</head>
+<body>
+    <div class="aurora-bg" aria-hidden="true">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <!-- Belépés -->
+    <div id="login-view">
+        <div class="card login-card">
+            <img class="logo" src="assets/logo.png" alt="Pulse Engine">
+            <div class="subtitle">Zenekérés · Stúdió</div>
+            <div id="setup-warning" class="setup-warning hidden" role="alert"></div>
+            <form id="login-form">
+                <label class="field">
+                    <span>E-mail</span>
+                    <input class="input" type="email" id="email" autocomplete="username" required>
+                </label>
+                <label class="field">
+                    <span>Jelszó</span>
+                    <input class="input" type="password" id="password" autocomplete="current-password" required>
+                </label>
+                <button class="btn-primary block" type="submit" id="login-btn">Belépés</button>
+            </form>
+            <div id="login-msg" class="login-msg hidden" role="alert"></div>
+        </div>
+    </div>
+
+    <!-- Admin felület -->
+    <div id="app-view" class="hidden">
+        <header class="app-header">
+            <a class="brand" href="admin.html">
+                <img src="assets/logo.png" alt="">
+                <div class="wordmark">zene<span class="accent">kérés</span></div>
+            </a>
+            <nav class="pill-nav" id="nav" aria-label="Fülek">
+                <button class="nav-btn active" type="button" data-tab="review">Bírálás <span class="badge" id="b-review">·</span></button>
+                <button class="nav-btn" type="button" data-tab="good">Jó zenék <span class="badge" id="b-good">·</span></button>
+                <button class="nav-btn" type="button" data-tab="bad">Elutasítva <span class="badge" id="b-bad">·</span></button>
+                <button class="nav-btn" type="button" data-tab="playlists">Listák <span class="badge" id="b-pl">·</span></button>
+            </nav>
+            <div class="user-chip">
+                <div class="avatar" id="avatar" aria-hidden="true">?</div>
+                <div class="name" id="user-name"></div>
+                <button class="logout-btn" type="button" id="logout-btn">Kilép</button>
+            </div>
+        </header>
+        <main class="app-main">
+            <section class="panel" id="panel"></section>
+        </main>
+    </div>
+
+    <!-- Kijelölés-sáv (Jó zenék fül) -->
+    <div id="select-bar" class="select-bar hidden">
+        <div class="count-lbl"><span class="grad-text" id="sel-count">0</span> zene kiválasztva</div>
+        <input class="input" id="pl-name" maxlength="100" placeholder="Lejátszási lista neve" aria-label="Lejátszási lista neve">
+        <button class="btn small" type="button" id="sel-clear">Kijelölés törlése</button>
+        <button class="btn-primary" type="button" id="pl-create">Lista összeállítása</button>
+    </div>
+
+    <!-- Zene szerkesztése / felvétele -->
+    <dialog id="song-dialog" class="modal" aria-labelledby="sd-heading">
+        <div class="card">
+            <form id="song-form" novalidate>
+                <h3 id="sd-heading">Zene szerkesztése</h3>
+                <label class="field">
+                    <span>Előadó</span>
+                    <input class="input" id="sd-artist" maxlength="120" autocomplete="off" required>
+                </label>
+                <label class="field">
+                    <span>Cím</span>
+                    <input class="input" id="sd-title" maxlength="160" autocomplete="off" required>
+                </label>
+                <div class="field" id="sd-verdict-wrap">
+                    <span class="field-label">Döntés</span>
+                    <div class="verdict-pick">
+                        <label><input type="radio" name="sd-verdict" value="good" checked><span class="btn-ok">Jó</span></label>
+                        <label><input type="radio" name="sd-verdict" value="bad"><span class="btn-bad">Nem jó</span></label>
+                    </div>
+                </div>
+                <label class="field">
+                    <span>Megjegyzés <em>(nem kötelező, csak a stúdió látja)</em></span>
+                    <textarea class="textarea" id="sd-note" maxlength="300" rows="2"></textarea>
+                </label>
+                <p class="form-error" id="sd-error" role="alert"></p>
+                <div class="modal-actions">
+                    <button class="btn" type="button" id="sd-cancel">Mégse</button>
+                    <button class="btn-primary" type="submit" id="sd-save">Mentés</button>
+                </div>
+            </form>
+        </div>
+    </dialog>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.js"></script>
+    <script src="config.js"></script>
+    <script src="assets/common.js"></script>
+    <script src="assets/admin.js"></script>
+</body>
+</html>
